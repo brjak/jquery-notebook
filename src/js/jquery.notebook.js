@@ -497,9 +497,8 @@
             },
             destroy: function(elem, customOptions) {
                 options = customOptions;
-                var idvalue = elem.attr('data-jquery-notebook-id');
-                idvalue += "jquery-notebook-content-"+idvalue;
-                $("[id=idvalue]").remove();
+                var idvalue = "#jquery-notebook-content-"+elem.attr('data-jquery-notebook-id');
+                $(idvalue).remove();
                 elem.removeAttr('editor-mode');
                 elem.removeAttr('editor-placeholder');
                 elem.removeAttr('contenteditable');
