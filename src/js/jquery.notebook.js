@@ -481,8 +481,6 @@
                 body.append(contentArea);
             },
             prepare: function(elem, customOptions) {
-                customOptions.unchanged = elem.wrap('<p/>').parent().html();
-                elem.unwrap();
                 options = customOptions;
                 actions.setContentArea(elem);
                 elem.attr('editor-mode', options.mode);
@@ -502,9 +500,10 @@
                 var idvalue = elem.attr('data-jquery-notebook-id');
                 idvalue += "jquery-notebook-content-"+idvalue;
                 $("[id=idvalue]").remove();
-                actions.setContentArea(elem);
-                options.placeholder = elem.html();
-                elem.replaceWith(options.unchanged).html(options.placeholder);
+                elem.removeAttr('editor-mode');
+                elem.removeAttr('editor-placeholder');
+                elem.removeAttr('contenteditable');
+                elem.removeClass('jquery-notebook editor');
             }
         },
         rawEvents = {
